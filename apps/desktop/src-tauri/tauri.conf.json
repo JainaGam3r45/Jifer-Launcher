@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "JiferCraft Launcher",
+  "mainBinaryName": "jifercraft-launcher",
+  "version": "../package.json",
+  "identifier": "com.jifercraft.launcher",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "bun run dev:web",
+    "beforeBuildCommand": "bun run build:web"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "JiferCraft Launcher",
+        "width": 1180,
+        "height": 760,
+        "minWidth": 980,
+        "minHeight": 640,
+        "center": true,
+        "decorations": false,
+        "shadow": true,
+        "resizable": true,
+        "visible": false,
+        "backgroundColor": "#07100d",
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self'",
+        "style-src": "'self' 'unsafe-inline'",
+        "img-src": "'self' data: asset: https://mc-heads.net",
+        "font-src": "'self'",
+        "connect-src": "ipc: http://ipc.localhost"
+      },
+      "freezePrototype": true
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "JiferCraft Studios",
+    "copyright": "Copyright 2026 JainaGam3r45 / JiferCraft Studios",
+    "category": "Game",
+    "shortDescription": "Minecraft launcher for JiferCraft Studios",
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/JainaGam3r45/Jifer-Launcher",
+    "createUpdaterArtifacts": true,
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.ico"],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "installerHooks": "./windows/hooks.nsh",
+        "installerIcon": "icons/icon.ico",
+        "sidebarImage": "./windows/installer-sidebar.bmp",
+        "headerImage": "./windows/installer-header.bmp",
+        "displayLanguageSelector": false,
+        "languages": ["Spanish", "English"]
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJEQkZERkEyNDlFMzI5OUQKUldTZEtlTkpvdCsvdlhpdVppL0FySFFNQzB3TWZrdkFnQkYrMDU1NWsvdDl2Nng4MndaTGg5YTkK",
+      "endpoints": ["https://github.com/JainaGam3r45/Jifer-Launcher/releases/latest/download/latest.json"],
+      "requireSignedVersion": true,
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}
