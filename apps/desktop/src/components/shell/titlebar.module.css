@@ -1,0 +1,196 @@
+.bar {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--titlebar-height);
+  padding-left: var(--space-4);
+  background: linear-gradient(180deg, rgba(4, 10, 9, 0.92), rgba(4, 10, 9, 0.7));
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(140%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.mark {
+  width: 20px;
+  height: 20px;
+  image-rendering: pixelated;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-soft);
+}
+
+.wordmark strong {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.crumbs > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-soft);
+}
+
+.crumbs > span:first-child::before {
+  content: "/";
+  margin-right: var(--space-2);
+  color: var(--line-strong);
+}
+
+.version {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    border-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.status[data-state="installing"],
+.status[data-state="launching"] {
+  color: var(--blue);
+  border-color: rgba(130, 169, 255, 0.4);
+}
+
+.status[data-state="installing"] .dot,
+.status[data-state="launching"] .dot {
+  background: var(--blue);
+  animation: pulse 1.1s var(--ease-standard) infinite;
+}
+
+.status[data-state="running"] {
+  color: var(--green);
+  border-color: var(--line-strong);
+}
+
+.status[data-state="running"] .dot {
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(115, 239, 173, 0.6);
+  animation: beacon 2s var(--ease-standard) infinite;
+}
+
+.status[data-state="stopping"] {
+  color: var(--amber);
+}
+
+.status[data-state="stopping"] .dot {
+  background: var(--amber);
+}
+
+.status[data-state="error"] {
+  color: var(--red);
+  border-color: rgba(255, 111, 135, 0.45);
+}
+
+.status[data-state="error"] .dot {
+  background: var(--red);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.controls {
+  display: flex;
+  height: 100%;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  color: var(--text-soft);
+  background: transparent;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.control svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+.control:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.close:hover {
+  background: #c42b1c;
+  color: #fff;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes beacon {
+  70% {
+    box-shadow: 0 0 0 6px rgba(115, 239, 173, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(115, 239, 173, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none !important;
+  }
+}

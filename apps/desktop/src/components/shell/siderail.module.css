@@ -1,0 +1,272 @@
+.rail {
+  /* backdrop-filter makes the rail its own stacking context; lift it above the stage so tooltips and the
+     account popover are not clipped by the content next to it. */
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--rail-width);
+  padding: var(--space-3) 0;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(5, 12, 11, 0.86), rgba(5, 12, 11, 0.72));
+  backdrop-filter: blur(18px);
+}
+
+.items,
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  background: transparent;
+  transition:
+    color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.item svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.item:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.item[aria-current="page"] {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: var(--line-strong);
+}
+
+.item[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--green);
+  view-transition-name: rail-indicator;
+}
+
+/* Tooltip: plain CSS, appears to the right of the rail. */
+.item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  translate: -4px -50%;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--text);
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    translate var(--duration-fast) var(--ease-standard);
+  z-index: 40;
+}
+
+.item:hover::after,
+.item:focus-visible::after {
+  opacity: 1;
+  translate: 0 -50%;
+}
+
+.alert {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+
+.badge {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.account {
+  position: relative;
+  margin-top: var(--space-2);
+}
+
+.avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: transparent;
+  overflow: visible;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius-md) - 1px);
+  image-rendering: pixelated;
+}
+
+.mode {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  background: var(--text-muted);
+}
+
+.mode[data-mode="microsoft"] {
+  background: var(--green);
+}
+
+.popover {
+  position: absolute;
+  left: calc(100% + 14px);
+  bottom: 0;
+  z-index: 50;
+  display: grid;
+  gap: var(--space-2);
+  width: 240px;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-lg);
+  animation: rise var(--duration-slow) var(--ease-emphasized);
+}
+
+.popover header {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.popover header img {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  image-rendering: pixelated;
+}
+
+.popover header div {
+  display: grid;
+}
+
+.popover header span,
+.label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.label {
+  margin: var(--space-1) 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.row > button:first-child {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  background: transparent;
+  text-align: left;
+}
+
+.row > button:first-child:hover {
+  background: var(--surface-hover);
+}
+
+.row img {
+  width: 20px;
+  height: 20px;
+  image-rendering: pixelated;
+}
+
+.forget {
+  width: 28px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.forget:hover {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
+.signOut {
+  margin-top: var(--space-1);
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-soft);
+  background: transparent;
+}
+
+.signOut:hover {
+  color: var(--red);
+  border-color: rgba(255, 111, 135, 0.45);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}

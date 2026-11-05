@@ -1,0 +1,80 @@
+:root {
+  --bg: #07100d;
+  --text: #eef5f8;
+  --text-soft: #b8c8cc;
+  --text-muted: #7f9297;
+  --text-label: #cad8db;
+  --link: #9bc2ff;
+
+  --panel: rgba(8, 17, 18, 0.78);
+  --panel-strong: rgba(9, 19, 22, 0.92);
+  --surface-input: rgba(5, 14, 17, 0.84);
+
+  --line: rgba(185, 221, 218, 0.2);
+  --line-strong: rgba(119, 237, 177, 0.48);
+  --line-input: rgba(159, 190, 200, 0.24);
+
+  --green: #73efad;
+  --blue: #82a9ff;
+  --amber: #f0c96d;
+  --red: #ff6f87;
+  --focus-ring: var(--green);
+  --green-soft: rgba(115, 239, 173, 0.14);
+  --amber-soft: rgba(240, 201, 109, 0.14);
+  --red-soft: rgba(255, 111, 135, 0.14);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --on-accent: #06100d;
+  --accent-gradient: linear-gradient(180deg, #9af4c2, #57d78e);
+  --accent-gradient-hover: linear-gradient(180deg, #b3ffd0, #62e49b);
+  --scrim-hero:
+    linear-gradient(90deg, rgba(5, 12, 14, 0.96), rgba(5, 12, 14, 0.72) 44%, rgba(5, 12, 14, 0.18)),
+    linear-gradient(180deg, transparent 48%, rgba(5, 12, 14, 0.66));
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 18px 42px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 24px 80px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.42);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --duration-fast: 120ms;
+  --duration-hover: 150ms;
+  --duration-base: 160ms;
+  --duration-slow: 240ms;
+  --ease-standard: ease;
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  --font-sans: "Segoe UI Variable Text", "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "Cascadia Code", "Cascadia Mono", Consolas, ui-monospace, monospace;
+
+  --titlebar-height: 40px;
+  --rail-width: 68px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-hover: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    --line: CanvasText;
+    --line-strong: Highlight;
+    --line-input: CanvasText;
+    --focus-ring: Highlight;
+  }
+}
