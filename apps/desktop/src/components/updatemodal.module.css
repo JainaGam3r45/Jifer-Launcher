@@ -1,0 +1,135 @@
+.content {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.facts div {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+}
+
+.facts dt {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.notesSection {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.notesTitle {
+  margin: 0;
+  font-size: 13px;
+}
+
+.notes {
+  max-height: 220px;
+  padding: var(--space-3);
+  overflow: auto;
+  color: var(--text-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-input);
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.state {
+  margin: 0;
+  font-weight: 800;
+}
+
+.progress {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.track {
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface-input);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--accent-gradient);
+  transition: width var(--duration-base) var(--ease-standard);
+}
+
+.summary {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.error {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-md);
+  background: var(--red-soft);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.primary {
+  min-height: 42px;
+  padding: 0 var(--space-5);
+  color: var(--on-accent);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  transition:
+    background var(--duration-hover) var(--ease-standard),
+    transform var(--duration-hover) var(--ease-standard);
+}
+
+.primary:hover:not([aria-disabled="true"]) {
+  background: var(--accent-gradient-hover);
+  transform: translateY(-1px);
+}
+
+.primary[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.hint {
+  margin: 0;
+  color: var(--amber);
+  font-size: 12px;
+  text-align: right;
+}

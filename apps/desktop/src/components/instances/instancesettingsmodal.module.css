@@ -1,0 +1,143 @@
+.form {
+  display: grid;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  color: var(--text-soft);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: transparent;
+  transition:
+    color var(--duration-hover) var(--ease-standard),
+    background var(--duration-hover) var(--ease-standard);
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--green);
+  box-shadow: inset 0 -2px 0 var(--green);
+}
+
+.tab[data-invalid]::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--red);
+}
+
+.body {
+  max-height: calc(100vh - 290px);
+  overflow: auto;
+  padding: var(--space-4);
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: var(--red);
+}
+
+.error {
+  margin: 0;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.serverError {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  color: var(--text);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-md);
+  background: var(--red-soft);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.primary,
+.secondary {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-md);
+  transition:
+    background var(--duration-hover) var(--ease-standard),
+    border-color var(--duration-hover) var(--ease-standard),
+    transform var(--duration-hover) var(--ease-standard);
+}
+
+.primary {
+  color: var(--on-accent);
+  border: 1px solid var(--line-strong);
+  background: var(--accent-gradient);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--accent-gradient-hover);
+  transform: translateY(-1px);
+}
+
+.secondary {
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: var(--panel-strong);
+}
+
+.secondary:hover {
+  border-color: var(--line-strong);
+  background: var(--surface-hover);
+}

@@ -1,0 +1,234 @@
+.panel {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  backdrop-filter: blur(20px) saturate(130%);
+  box-shadow: var(--shadow-md);
+  animation: enter var(--duration-slow) var(--ease-emphasized);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+
+.header h3 {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.percent {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Connector line between nodes. */
+.steps li + li::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+}
+
+.steps li[data-state="done"]::before,
+.steps li[data-state="active"]::before {
+  background: var(--green);
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.steps li[data-state="done"] {
+  color: var(--text-soft);
+}
+
+.steps li[data-state="done"] .node {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.steps li[data-state="active"] {
+  color: var(--green);
+}
+
+.steps li[data-state="active"] .node {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px var(--green-soft);
+  animation: breathe 1.4s var(--ease-standard) infinite;
+}
+
+.track {
+  position: relative;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent-gradient);
+  transition: width var(--duration-slow) var(--ease-standard);
+  position: relative;
+}
+
+.fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  translate: -100% 0;
+  animation: sheen 1.6s var(--ease-standard) infinite;
+}
+
+.indeterminate {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 35%;
+  border-radius: inherit;
+  background: var(--accent-gradient);
+  animation: sweep 1.2s var(--ease-standard) infinite;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.metric {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.metric dt {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.metric dd {
+  display: grid;
+  margin: 0;
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.metric[data-live] .value {
+  color: var(--blue);
+}
+
+.metric[data-accent] .value {
+  color: var(--green);
+}
+
+.metric[data-warn] .value {
+  color: var(--amber);
+}
+
+@media (max-width: 1180px) {
+  .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+@keyframes breathe {
+  50% {
+    box-shadow: 0 0 0 7px rgba(115, 239, 173, 0.06);
+  }
+}
+
+@keyframes sheen {
+  to {
+    translate: 100% 0;
+  }
+}
+
+@keyframes sweep {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 300% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .fill::after,
+  .indeterminate,
+  .steps li[data-state="active"] .node {
+    animation: none;
+  }
+}

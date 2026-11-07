@@ -1,0 +1,120 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.back {
+  justify-self: start;
+  padding: var(--space-1) var(--space-2);
+  color: var(--text-soft);
+  background: transparent;
+  font-size: 12px;
+}
+
+.back:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-color: var(--red);
+}
+
+.error {
+  margin: 0;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.loaders {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.loaders legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+  color: var(--text-label);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  font-weight: 800;
+  transition: border-color var(--duration-hover) var(--ease-standard);
+}
+
+.loader input {
+  width: auto;
+  min-height: 0;
+  margin: 0;
+}
+
+.loader[data-disabled] {
+  color: var(--text-muted);
+}
+
+.soon {
+  margin-left: auto;
+  padding: 2px var(--space-2);
+  color: var(--amber);
+  border: 1px solid var(--amber);
+  border-radius: var(--radius-pill);
+  background: var(--amber-soft);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.serverError {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-md);
+  background: var(--red-soft);
+  font-size: 13px;
+}
+
+.submit {
+  min-height: 42px;
+  color: var(--on-accent);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  transition:
+    background var(--duration-hover) var(--ease-standard),
+    transform var(--duration-hover) var(--ease-standard);
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-gradient-hover);
+  transform: translateY(-1px);
+}
